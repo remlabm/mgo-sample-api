@@ -82,6 +82,7 @@ Response
 ```
 ---
 #### File List [GET]: /api/files
+
 Response: `// File Array`
 ---
 #### Sample Queries
