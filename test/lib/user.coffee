@@ -1,7 +1,10 @@
 async = require 'async'
 _ = require 'lodash'
+F = require 'faker'
 restify = require 'restify'
 qs = require 'querystring'
+professions = [ 'Manager', 'Engineer', 'Director', 'QA', 'Systems' ]
+
 
 module.exports = class User
 
@@ -9,13 +12,31 @@ module.exports = class User
     client:
       url: 'http://localhost:8081'
 
-  constructor: ( @userData, options )->
+  constructor: ( userData, options )->
     @setOptions options
+
+    if _.isString userData
+      @fakeUserData { firstName: userData }
+    else
+      @fakeUserData userData
+
     @client = restify.createJsonClient @options.client
 
   setOptions: (options) ->
     @options = _.merge @defaults, options
     this
+
+  fakeUserData: ( userData ) ->
+    @userData = _.merge {
+      email: F.internet.email()
+      password: 'test123'
+      firstName: F.name.firstName()
+      lastName: F.name.lastName()
+      city: F.address.city()
+      state: F.address.stateAbbr()
+      profession: F.random.array_element( professions )
+    }, userData
+
 
   login: ( done )->
     @client.post '/api/login', { login: @userData.email, password: @userData.password }, ( err, req, res, auth)=>
@@ -46,8 +67,4 @@ module.exports = class User
       if err
         done err
 
-      user.getProfile ()->
-        if err
-          done err
-
-        done null, user
+      done null, user

@@ -5,8 +5,13 @@ var mongoose = require('mongoose')
   ;
 
 var UserSchema = new mongoose.Schema({
-  email    : { type: String, required: true, unique: true }
+  email : { type: String, required: true, unique: true }
   , password : { type: String, required: true }
+  , firstName: { type: String }
+  , lastName: { type: String }
+  , city : { type: String }
+  , state : { type: String }
+  , profession : { type: String }
 });
 
 // Check password update

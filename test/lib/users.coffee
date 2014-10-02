@@ -32,10 +32,10 @@ module.exports = class Users
     return @users
 
   get: ( name )->
-    return _(@users).chain().where( { name: name }).first().value()
+    return _(@users).chain().where( { firstName: name }).first().value()
 
   getNames: ()->
-    return _.pluck( @users, 'name')
+    return _.pluck( @users, 'firstName')
 
   @setup: ( usersData, done )->
     if !_.isArray usersData

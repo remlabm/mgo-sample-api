@@ -1,6 +1,6 @@
 global.restify = require 'restify'
 global.mongoose = require 'mongoose'
-mongoose.connect 'mongodb://localhost/sample-api-test'
+mongoose.connect 'mongodb://localhost/sample-api'
 Logger = require 'bunyan'
 
 global.chai = require 'chai'

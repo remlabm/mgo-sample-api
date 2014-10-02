@@ -31,6 +31,7 @@ server.use( [
 );
 
 var auth = require('./controllers/auth')
+  users = require('./controllers/users')
   ;
 
 // Routes
@@ -55,5 +56,15 @@ server.get('/echo-auth', function( req, res, next ){
   res.send( req.params );
   next();
 });
+
+// Auth User Profile
+server.get('/api/profile', function( req, res, next ){
+  req.params.id = req.userId;
+  next()
+}, users.findOne );
+
+// User Endpoint
+server.get('/api/users/:id', users.findOne);
+server.get('/api/users', users.search )
 
 module.exports = server;

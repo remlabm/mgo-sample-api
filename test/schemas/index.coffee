@@ -11,25 +11,50 @@ authSchema =
     expires:
       type: 'string'
 
-userNoteSchema =
-  id: 'userNote'
+userSchema =
+  id: 'user'
   type: 'object'
-  required: [ '_id', 'title', 'description',  'createdAt']
+  required: [ '_id', 'email', '__v' ]
   properties:
     _id:
       type: 'string'
-    title:
+    email:
       type: 'string'
-    description:
+    firstName:
       type: 'string'
+    lastName:
+      type: 'string'
+    city:
+      type: 'string'
+    state:
+      type: 'string'
+    profession:
+      type: 'string'
+    __v:
+      type: 'number'
 
-userNotesSchema =
-  id: 'userNotes'
+usersSchema =
+  id: 'users'
   type: 'array'
   items:
-    $ref: 'userNote'
+    $ref: 'user'
+
+usersGroupedSchema =
+  id: 'usersGrouped'
+  type: 'array'
+  items:
+    type: 'object'
+    required: ['_id', 'users']
+    properties:
+      _id:
+        type: 'string'
+      users:
+        type: 'array'
+        items:
+          $ref: 'user'
 
 # Register Schemas
-chai.tv4.addSchema userNotesSchema
-chai.tv4.addSchema userNoteSchema
+chai.tv4.addSchema usersGroupedSchema
+chai.tv4.addSchema usersSchema
+chai.tv4.addSchema userSchema
 chai.tv4.addSchema authSchema
