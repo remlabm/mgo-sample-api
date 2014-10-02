@@ -19,21 +19,41 @@ Sample Api application demonstrating CRUD with OAuth2
   - Please make sure that you have Unit Tests.
 
 ### Technologies
+Requirements: 
+  - NodeJS 10.24+
+  - MongoDB 2.6+
+  
+List of main libraries being used:
+- [Restify](http://mcavage.me/node-restify/): Slim wrapper for handling API. Includes useful tools for handling errors and versioning.
+- [MongooseJS](http://mongoosejs.com/index.html): Modeling library for MongoDB.
+- [LoDash](http://lodash.com/): Utility library, similar to underscore.
 
 ### Versioning
+Versioning of the endpoints can be handled by Restify library. Example: If we moved files listings to an updated version.
+```js
+server.get('/api/files', version: '0.0.2'}, function( req, res, next ){ ... });
+```
+
+When a client passes a version header, will be handled accordingly. This also allows deprecation responses for clients that have not updated.
+```js
+server.get('/api/files', version: '0.0.1'}, handleDeprecated, function( req, res, next ){ ... });
+```
 
 ### Endpoint Definitions
+#### oAuth
+  - Register
+  -- Method: Post
+  -- Path: `/api/register`
+  -- Payload: `{"email":"testing123@test.com","password":"test123"}`
 
 
-## How to use local development
+## How to use locally
 1. Clone repo `git clone git@github.com`
 2. Run `npm install`
 3. Start service `gulp`
 
-## Test * Requires mocha
+## How to test **Requires mocha
 Run `npm test`
-
-## How to deploy
 
 ## TODO
   - n/a

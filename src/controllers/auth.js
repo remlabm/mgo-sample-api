@@ -8,10 +8,11 @@ var mongoose = require('mongoose')
 
 // ### Register
 exports.register = function (req, res, next) {
-
   var user = new User( req.params );
   user.validate( function( err ){
-    if( err ){ next( new restify.PreconditionFailedError );}
+    if( err ){
+      return next( new restify.PreconditionFailedError );
+    }
 
     user.save( function(err, user) {
       next.ifError(err);
