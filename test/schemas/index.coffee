@@ -52,8 +52,17 @@ usersGroupedSchema =
         type: 'array'
         items:
           $ref: 'user'
+healthCheckSchema =
+  id: 'healthCheck'
+  type: 'object'
+  properties:
+    host:
+      type: 'string'
+    ok:
+      type: 'number'
 
 # Register Schemas
+chai.tv4.addSchema healthCheckSchema
 chai.tv4.addSchema usersGroupedSchema
 chai.tv4.addSchema usersSchema
 chai.tv4.addSchema userSchema

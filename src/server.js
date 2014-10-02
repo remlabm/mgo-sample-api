@@ -2,7 +2,10 @@ var CONFIG = require('config')
   , os = require('os')
   , restify = require('restify')
   , restifyOAuth2 = require('./lib/restify-oauth2')
+  , mongoose = require('mongoose')
+  , _ = require('lodash')
   ;
+
 
 require('./models/user');
 require('./models/access-token');
@@ -47,6 +50,15 @@ server.get('/echo', function( req, res, next ){
 server.post('/api/register', auth.register);
 server.post('/api/login', auth.login);
 server.get('/api/logout', auth.logout );
+
+// Health Check
+server.get('/api/health-check', function( req, res, next ){
+  mongoose.connection.db.command({ serverStatus: 1 }, function( err, result ){
+    next.ifError( err );
+    res.send( _.pick( result, ['host', 'version', 'uptime', 'network', 'ok']) );
+    next();
+  })
+});
 
 // ** Everything below here will require Auth Token **
 server.use( restifyOAuth2.mustBeAuthorized() );
