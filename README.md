@@ -90,9 +90,9 @@ Request
 Response: `// File Array`
 
 #### Sample Queries
-Get Users filtering managers: `/api/users?filter={"profession":"Manager"}`
-Get Users grouped by profession: `/api/users?group=profession`
-Get 20 users skipping first 5: `/api/users?limit=20&skip=5`
+* Get Users filtering managers: `/api/users?filter={"profession":"Manager"}`
+* Get Users grouped by profession: `/api/users?group=profession`
+* Get 20 users skipping first 5: `/api/users?limit=20&skip=5`
 
 ## How to use locally
 1. Clone repo `git clone git@github.com`
