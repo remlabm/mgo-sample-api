@@ -34,7 +34,8 @@ server.use( [
 );
 
 var auth = require('./controllers/auth')
-  users = require('./controllers/users')
+  , users = require('./controllers/users')
+  , fileList = require('./controllers/file-list');
   ;
 
 // Routes
@@ -59,6 +60,8 @@ server.get('/api/health-check', function( req, res, next ){
     next();
   })
 });
+
+server.get('/api/files', fileList.listDirectory);
 
 // ** Everything below here will require Auth Token **
 server.use( restifyOAuth2.mustBeAuthorized() );

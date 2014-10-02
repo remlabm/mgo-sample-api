@@ -10,10 +10,11 @@
     "config": "^0.4.35",
     "js-yaml": "^3.0.2",
     "lodash": "~2.4.1",
+    "moment": "2.5.1",
     "mongoose": "~3.8",
     "mongoose-timestamp": "^0.2.1",
-    "moment": "2.5.1",
-    "restify": "~2.8"
+    "restify": "~2.8",
+    "walker": "^1.0.6"
   },
   "devDependencies": {
     "chai": "1.9.0",
