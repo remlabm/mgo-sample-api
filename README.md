@@ -40,12 +40,59 @@ server.get('/api/files', version: '0.0.1'}, handleDeprecated, function( req, res
 ```
 
 ### Endpoint Definitions
-#### oAuth
-  - Register
-  -- Method: Post
-  -- Path: `/api/register`
-  -- Payload: `{"email":"testing123@test.com","password":"test123"}`
 
+#### User Register
+Request
+```
+  [POST]: /api/register
+  Payload: {"email":"testing123@test.com","password":"test123"}
+```
+Response
+```
+  Content: `{"__v":0,"_userId":"542db426777371faf368df6f","_id":"542db426777371faf368df70","expires":"2014-10-09T20:22:19.000Z","token":"c69ebc68cc76097ed300f8158f5434f6"}`
+```
+** Use TOKEN for Bearer Auth Token **
+
+#### User Login
+Request
+```
+  [POST]: /api/login
+  Payload: {"login":"testing123@test.com","password":"test123"}
+```
+Response
+```
+  Content: `{"__v":0,"_userId":"542db426777371faf368df6f","_id":"542db426777371faf368df70","expires":"2014-10-09T20:22:19.000Z","token":"c69ebc68cc76097ed300f8158f5434f6"}`
+```
+** Use TOKEN for Bearer Auth Token **
+
+#### Users List
+Request
+```
+  [GET]: /api/users
+```
+Response: `// User Array`
+
+#### Health Check
+Request
+```
+  [GET]: /api/health-check
+```
+Response
+```
+  {"host":"rmac.local","version":"2.6.1","uptime":528604,"network":{"bytesIn":17910206,"bytesOut":12352015,"numRequests":28406},"ok":1}
+```
+
+#### File List
+Request
+```
+  [GET]: /api/files
+```
+Response: `// File Array`
+
+#### Sample Queries
+Get Users filtering managers: `/api/users?filter={"profession":"Manager"}`
+Get Users grouped by profession: `/api/users?group=profession`
+Get 20 users skipping first 5: `/api/users?limit=20&skip=5`
 
 ## How to use locally
 1. Clone repo `git clone git@github.com`
