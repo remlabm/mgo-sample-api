@@ -36,6 +36,8 @@ List of main libraries being used:
 ## How to test **Requires mocha
 Run `npm test`
 
+---
+
 ### Versioning
 Versioning of the endpoints can be handled by Restify library. Example: If we moved files listings to an updated version.
 ```js
@@ -59,8 +61,7 @@ Response
 {"__v":0,"_userId":"542db426777371faf368df6f", ... "token":"c69ebc68cc76097ed300f8158f5434f6"}
 ```
 **Use TOKEN for Bearer Auth Header**
-
-
+---
 #### User Login: [POST] `/api/login`
 Payload
 ```js
@@ -71,18 +72,18 @@ Response
 {"__v":0,"_userId":"542db426777371faf368df6f", ... "token":"c69ebc68cc76097ed300f8158f5434f6"}
 ```
 **Use TOKEN for Bearer Auth Header**
-
+---
 #### Users List: [GET] `/api/users`
-
+---
 #### Health Check: [GET]: `/api/health-check`
 Response
 ```js
 {"host":"rmac.local","version":"2.6.1","uptime":528604,"network":{"bytesIn":17910206,"bytesOut":12352015,"numRequests":28406},"ok":1}
 ```
-
+---
 #### File List [GET]: /api/files
 Response: `// File Array`
-
+---
 #### Sample Queries
 * Get Users filtering managers: `/api/users?filter={"profession":"Manager"}`
 * Get Users grouped by profession: `/api/users?group=profession`
