@@ -28,6 +28,14 @@ List of main libraries being used:
 - [MongooseJS](http://mongoosejs.com/index.html): Modeling library for MongoDB.
 - [LoDash](http://lodash.com/): Utility library, similar to underscore.
 
+## How to use locally
+1. Clone repo `git clone git@github.com`
+2. Run `npm install`
+3. Start service `gulp`
+
+## How to test **Requires mocha
+Run `npm test`
+
 ### Versioning
 Versioning of the endpoints can be handled by Restify library. Example: If we moved files listings to an updated version.
 ```js
@@ -41,16 +49,11 @@ server.get('/api/files', version: '0.0.1'}, handleDeprecated, function( req, res
 
 ### Endpoint Definitions
 
-#### User Register
-Request
-```
-  [POST]: /api/register
-  Payload: {"email":"testing123@test.com","password":"test123"}
-```
-Response
-```
-  Content: `{"__v":0,"_userId":"542db426777371faf368df6f","_id":"542db426777371faf368df70","expires":"2014-10-09T20:22:19.000Z","token":"c69ebc68cc76097ed300f8158f5434f6"}`
-```
+User Register
+> URL: [POST]/api/register
+> Payload: `{"email":"testing123@test.com","password":"test123"}`
+> Response: `{"__v":0,"_userId":"542db426777371faf368df6f","_id":"542db426777371faf368df70","expires":"2014-10-09T20:22:19.000Z","token":"c69ebc68cc76097ed300f8158f5434f6"}`
+
 ** Use TOKEN for Bearer Auth Token **
 
 #### User Login
@@ -93,14 +96,6 @@ Response: `// File Array`
 * Get Users filtering managers: `/api/users?filter={"profession":"Manager"}`
 * Get Users grouped by profession: `/api/users?group=profession`
 * Get 20 users skipping first 5: `/api/users?limit=20&skip=5`
-
-## How to use locally
-1. Clone repo `git clone git@github.com`
-2. Run `npm install`
-3. Start service `gulp`
-
-## How to test **Requires mocha
-Run `npm test`
 
 ## TODO
   - n/a
